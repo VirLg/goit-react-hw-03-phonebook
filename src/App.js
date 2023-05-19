@@ -21,8 +21,41 @@ class App extends React.Component{
         ],
         filter: '',
       }
+      componentDidMount(){
+
+console.log("daadlfjkshd");
+
+        if(localStorage.contacts){
+const jsonContacts=localStorage.getItem('contacts')
+const parseJson = JSON.parse(jsonContacts)
+            this.setState({
+                contacts:parseJson
+            })
+        }
+    }
+
+componentDidUpdate(prevProps,prevState){
+          console.log("adasdasd");
+
+    console.log(JSON.stringify(this.state.contacts));
+            if(this.state.contacts!==prevState.contacts)
+                localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+}
 
 
+
+//       componentDidUdate(prevProps, prevState){
+
+
+//         console.log("adasdasd");
+
+// console.log(JSON.stringify(this.state.contacts));
+//         if(this.state.contacts!==prevState.contacts)
+//             localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+        
+//     }
+    
+  
 
 formSubmitHendler=(data)=>{
     const state=this.state.contacts.find(el=>el.name===data.name)
